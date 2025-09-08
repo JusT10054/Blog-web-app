@@ -1,0 +1,29 @@
+<%- include('partials/header.html') %>
+<div class="post-card">
+    <h1><%= post.title %></h1>
+    <p class="post-meta">
+        By <%= post.authorName %> on <%= new Date(post.createdAt).toLocaleDateString() %>
+    </p>
+
+    <% if (post.mediaPath) { %>
+        <% if (['.jpg', '.jpeg', '.png', '.gif', '.webp'].some(ext => post.mediaPath.endsWith(ext))) { %>
+            <img src="<%= post.mediaPath %>" alt="<%= post.title %>" class="single-post-media">
+        <% } else if (['.mp4', '.webm'].some(ext => post.mediaPath.endsWith(ext))) { %>
+            <video src="<%= post.mediaPath %>" controls class="single-post-media" style="width:100%"></video>
+        <% } %>
+    <% } %>
+    
+    <div class="post-content">
+        <p><%- post.content.replace(/\n/g, '<br>') %></p>
+    </div>
+
+    <% if (currentUser && currentUser.id === post.authorId) { %>
+        <div class="post-actions">
+            <a href="/posts/<%= post.id %>/edit" class="btn btn-secondary">Edit</a>
+            <form action="/posts/<%= post.id %>?_method=DELETE" method="POST">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+    <% } %>
+</div>
+<%- include('partials/footer.html') %>

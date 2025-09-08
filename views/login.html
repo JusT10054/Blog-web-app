@@ -1,0 +1,16 @@
+<%- include('partials/header.html') %>
+<div class="form-wrapper">
+    <h1>Login</h1>
+    <form action="/login" method="POST">
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" class="form-control" required>
+        </div>
+        <button type="submit" class="btn">Login</button>
+    </form>
+</div>
+<%- include('partials/footer.html') %>

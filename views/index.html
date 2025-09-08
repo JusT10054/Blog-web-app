@@ -1,0 +1,21 @@
+<%- include('partials/header.html') %>
+    <h1>Latest Articles</h1>
+    <% if (posts.length > 0) { %>
+        <% posts.forEach(post => { %>
+            <article class="post-card">
+                <h2><a href="/posts/<%= post.id %>"><%= post.title %></a></h2>
+                <p class="post-meta">
+                    By <%= post.authorName %> on <%= new Date(post.createdAt).toLocaleDateString() %>
+                </p>
+                <div class="post-content">
+                    <p><%= post.content.substring(0, 200) %>...</p>
+                </div>
+                <a href="/posts/<%= post.id %>" class="btn">Read More</a>
+            </article>
+        <% }) %>
+    <% } else { %>
+        <div class="post-card" style="text-align: center;">
+             <p>No posts found. Why not be the first to create one?</p>
+        </div>
+    <% } %>
+<%- include('partials/footer.html') %>

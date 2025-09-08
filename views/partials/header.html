@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Blogify | A File-Based Blog</title>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="/posts" class="navbar-brand">Blogify</a>
+            <ul class="nav-links">
+                <li><a href="/posts">All Posts</a></li>
+                <% if (currentUser) { %>
+                    <li><a href="/posts/new" class="btn">New Post</a></li>
+                    <li>
+                        <form action="/logout" method="POST">
+                            <button type="submit" class="btn btn-secondary">Logout</button>
+                        </form>
+                    </li>
+                <% } else { %>
+                    <li><a href="/login" class="btn btn-secondary">Login</a></li>
+                    <li><a href="/register" class="btn">Register</a></li>
+                <% } %>
+            </ul>
+        </div>
+    </nav>
+    <main>
+        <div class="container">
